@@ -32,7 +32,7 @@ int hitung () {
 }
 
 bool penuhKah () {
-    if (hitung() == maks) {
+    if (hitung() == maks || hitung() >= maks) {
         return true;
     } else
     {
@@ -81,10 +81,13 @@ void tambah (string nama, string tanggal, int jumlah) {
 }
 
 void hapus() {
+    while (ini != NULL)
+    {
     busek = bt;
     bt = bt->prev;
     bt->next = NULL;
     delete busek;
+    }
 }
 
 int cetak () {
@@ -97,7 +100,7 @@ int cetak () {
         ini = bt;
         while (ini != NULL)
         {
-            cout << "Nama Pelanggan: " << ini->namaPelanggan << "-" << ini->tanggal << "-" << ini->jumlahTagihan << endl;
+            cout << "Nama Pelanggan: " << ini->namaPelanggan << " - " << ini->tanggal << " - Rp." << ini->jumlahTagihan << endl;
             cout << endl;
             ini = ini->prev; 
         }
@@ -117,6 +120,7 @@ void peek(int posisi) {
             nomor++;
         }
         cout << "data ke- " << posisi << "Nama Pelanggan: " << ini->namaPelanggan << " - " << ini->tanggal << " - Rp." << ini->jumlahTagihan << endl;
+        cout << endl;
     }
     
 }
@@ -154,9 +158,12 @@ void destroy () {
 int main () {
     tambah("Bagus", "2 Maret 2010", 50000);
     tambah("Eko", "11 Mei 2021", 20000);
-    cout << "apakah data penuh? " << penuhKah() << endl;
-    cout << "apakah data kosong? " << kosongKah() << endl;
+    hapus();
 
-    destroy();
+    // destroy();
+    tambah("wijayanto", "17 Agustus 1945", 500000);
+    tambah("Bagus Eko", "26 Februari 2011", 5500);
+    peek(2);
+    ubah("wiwi", "2 november 1999", 50000, 3);
     cetak();
 } 

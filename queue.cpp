@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int maks = 5, front = 0, back = 0;
-string antrianAtm[5];
+int maks = 5, depan = 0, blkg = 0;
+string antrian[5];
 
 bool fullKah()
 {
-  if( back == maks ){
+  if( blkg == maks ){
     return true;
   }else{
     return false;
@@ -16,7 +16,7 @@ bool fullKah()
 
 bool kosongKah()
 {
-  if( back == 0 ){
+  if( blkg == 0 ){
     return true;
   }else{
     return false;
@@ -27,16 +27,16 @@ bool kosongKah()
 void tambah(string data){
 
   if( fullKah() ){
-    cout << "Antrian penuh!!" << endl;
+    cout << "Antrian full bos!!" << endl;
   }else{
 
     if( kosongKah() ){
-      antrianAtm[0] = data;
-      front++;
-      back++;
+      antrian[0] = data;
+      depan++;
+      blkg++;
     }else{
-      antrianAtm[back] = data;
-      back++;
+      antrian[blkg] = data;
+      blkg++;
     }
   }
 
@@ -44,12 +44,12 @@ void tambah(string data){
 
 void hapus(){
   if( kosongKah() ){
-    cout << "Antrian kosong!!" << endl;
+    cout << "Antrian kosong guys!!" << endl;
   }else{
-    for( int i = 0; i < back; i++ ){
-      antrianAtm[i] = antrianAtm[i+1];
+    for( int i = 0; i < blkg; i++ ){
+      antrian[i] = antrian[i+1];
     }
-    back--;
+    blkg--;
   }
 }
 
@@ -61,24 +61,24 @@ int hitung()
   }else if( fullKah() ){
     return maks;
   }else{
-    return back;
+    return blkg;
   }
 
 }
 
 void destroyArray(){
   if( kosongKah() ){
-    cout << "Antrian kosong!!" << endl;
+    cout << "Antrian kosong haha" << endl;
   }else{
     for( int i = 0; i < maks; i++ ){
       
-      if( back > 1 ){
-        antrianAtm[back - 1] = "";
-        back--;
-      }else if( back == 1 ){
-        antrianAtm[back - 1] = "";
-        back = 0;
-        front = 0;
+      if( blkg > 1 ){
+        antrian[blkg - 1] = "";
+        blkg--;
+      }else if( blkg == 1 ){
+        antrian[blkg - 1] = "";
+        blkg = 0;
+        depan = 0;
       }
 
     }
@@ -87,14 +87,14 @@ void destroyArray(){
 
 void cetak()
 {
-  cout << "Jumlah data yg ngantri : " << hitung() << "data." << endl;
-  cout << "Data Antrian Atm : " << endl;
+  cout << "Banyak antrian : " << hitung() << endl;
+  cout << "Data antrian : " << endl;
   if( kosongKah() ){
-    cout << "Antrian kosong!!" << endl;
+    cout << "Antrian kosong gaes" << endl;
   }else{
     for( int i = 0; i < maks; i++ ){
-      if( antrianAtm[i] != "" ){
-        cout << i+1 << ". " << antrianAtm[i] << endl;
+      if( antrian[i] != "" ){
+        cout << i+1 << ". " << antrian[i] << endl;
       }else{
         cout << i+1 << ". (kosong)" << endl;
       }
@@ -109,11 +109,11 @@ int main()
 {
 tambah ("Alex");
 tambah ("Budi");
+hapus();
 tambah ("Caca");
 tambah ("Dewi");
 tambah ("Elga");
 tambah ("Fauzi");
-hapus();
 
 
 cetak();
